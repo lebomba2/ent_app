@@ -31,8 +31,12 @@ namespace Entertainment_App.Models
 
         public override void Read()
         {
-            _fileName = $"{Environment.CurrentDirectory}/movies.csv";
+            _fileName = $"{Environment.CurrentDirectory}/Files/movies.csv";
 
+            if (!File.Exists(_fileName))
+            {
+                Console.WriteLine($"File does not exist {_fileName}");
+            }
             var film = new Movie();
 
             try

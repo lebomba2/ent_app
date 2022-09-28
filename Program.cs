@@ -25,6 +25,7 @@ namespace Entertainment_App
                     // Display Movies
 
                     med = new Movie();
+                    med.Read();
                     med.Display();
                 }
                 else if (choice == "2")

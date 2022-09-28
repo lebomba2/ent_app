@@ -21,7 +21,7 @@ namespace Entertainment_App.Models
 
         public override void Read()
         {
-            _fileName = $"{Environment.CurrentDirectory}/Videos.csv";
+            _fileName = $"{Environment.CurrentDirectory}/Files/Videos.csv";
         }
     }
 }
