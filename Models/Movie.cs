@@ -15,18 +15,25 @@ namespace Entertainment_App.Models
 
         public Movie()
         {
-            Console.WriteLine("movie object created");
+            //Console.WriteLine("movie object created");
         }
 
         public override void Display()
         {
+
+            Console.WriteLine();
+            Console.WriteLine("movieId   title     genres"  );
+;
             // print out contents of Array 
-            for (var i = 0; i < Movies.Count(); i++)
+            
+            foreach (var Movie in Movies)
             {
-                Console.Write(Movies[i].Id + " ");
-                Console.WriteLine(Movies[i].Genres);
-                Console.Write(Movies[i].Title + " ");
+                Console.Write(Movie.Id+ " ");
+                Console.Write(Movie.Title + " ");
+                Console.WriteLine(Movie.Genres);
             }
+
+
         }
 
         public override void Read()
@@ -37,8 +44,7 @@ namespace Entertainment_App.Models
             {
                 Console.WriteLine($"File does not exist {_fileName}");
             }
-            var film = new Movie();
-
+            
             try
             {
                 var sr = new StreamReader(_fileName);
@@ -46,6 +52,9 @@ namespace Entertainment_App.Models
                 sr.ReadLine();
                 while (!sr.EndOfStream)
                 {
+
+                    var film = new Movie();
+
                     var line = sr.ReadLine();
                     // first look for quote(") in string
                     // this indicates a comma(,) in movie title
@@ -54,7 +63,12 @@ namespace Entertainment_App.Models
                     {
                         // no quote = no comma in movie title
                         // movie details are separated with comma(,)
+
+                        //String strDetails; 
                         var movieDetails = line.Split(',');
+                        //strDetails  = (String) movieDetails;
+                        //Console.WriteLine(strDetails);
+
                         // 1st array element contains movie id
                         film.Id = int.Parse(movieDetails[0]);
                         // 2nd array element contains movie title
@@ -63,7 +77,7 @@ namespace Entertainment_App.Models
                         // replace "|" with ", "
                         film.Genres = movieDetails[2].Replace("|", ", ");
                         // Add Film to Movie List
-                        Movies.Add(film);
+                        //Movies.Add(film);
                     }
                     else
                     {
@@ -81,9 +95,9 @@ namespace Entertainment_App.Models
                         // replace the "|" with ", "
                         film.Genres = line.Replace("|", ", ");
 
-                        // Add film object to Movie List
-                        Movies.Add(film);
-                    }
+                        }
+                    Movies.Add(film);
+                
                 }
 
                 // close file when done

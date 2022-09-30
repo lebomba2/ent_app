@@ -28,13 +28,22 @@ namespace Entertainment_App
                     med.Read();
                     med.Display();
                 }
-                else if (choice == "2")
+                else    if (choice == "2")
                 {
                     med = new Show();
+                    med.Read();
+                    med.Display();
+                    //Console.WriteLine("Debugging: Made it past Show Display method");
                 }
                 else if (choice == "3")
                 {
                     med = new Video();
+                    med.Read();
+
+                    //Console.WriteLine("Debugging:Made it to the main program after med.Red()");
+
+                    med.Display();
+
                 }
                 else
                 {
