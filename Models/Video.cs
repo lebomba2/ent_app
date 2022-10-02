@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace Entertainment_App.Models
 {
@@ -11,33 +14,44 @@ namespace Entertainment_App.Models
         public string Format { get; set; }
 
         public int Length { get; set; }
-        public String Regions { get; set; }
+        public  List<int>Regions { get; set; }
 
 //Default Constructor
         public Video() { }
+
+
+        public void PrintRegions()
+        {
+                
+
+            for (int i =  0; i <    Regions.Count() ; i++) {
+                Console.Write(Regions[i] + " ");
+            
+            }
+
+            
+        }
+
         public override void Display()
         {
             Console.WriteLine();
-            Console.WriteLine("videoId    title   format    length    regions");
+            Console.WriteLine("videoId              title   format    length    regions");
 
-            //throw new NotImplementedException();
-            //foreach (var Viddd  in Videos)
-            foreach          (var Vid  in Videos)
+            foreach (var vid in Videos)
             {
-                //Console.WriteLine("inside display method");
-                
-                Console.Write(Vid.Id + " ");
-                Console.Write(Vid.Title + " ");
-                Console.Write(Vid.Format + " ");
-                        Console.Write( Vid.Length + " ");
-                Console.WriteLine(Vid.Regions);
+                Console.Write(vid.Id + " ");
+                Console.Write(vid.Title + " ");
+                Console.Write(vid.Format + " ");
+                Console.Write(vid.Length + " ");
+                vid.PrintRegions();
+                Console.WriteLine();
 
             }
         }
 
-        public override void Read()
+            
+            public override void Read()
         {
-
                 
             _fileName = $"{Environment.CurrentDirectory}/Files/Videos.csv";
 
@@ -76,15 +90,16 @@ namespace Entertainment_App.Models
                         Vid.Title = VideoDetails[1];
                         // 3rd array element contains Video  Format (s)
 
-                        Vid.Format = VideoDetails[2];
+                        Vid.Format = VideoDetails[2].Replace("|", ", ");
 
                         // 4th array element contains Video Length()                   Vid.Id = int.Parse(VideoDetails[0]);
                         Vid.Length = int.Parse(VideoDetails[3]);
 
                         // replace "|" with ", "
-                        Vid.Regions = VideoDetails[4].Replace("|", ", ");
-                        //Movies.Add(film);
-                          }
+                        var strNumbers  =     VideoDetails[4].Split("|");
+                        Vid.Regions =  strNumbers.Select(int.Parse).ToList();     
+                    
+                    }
                     else
                     {
                         // quote = comma in Video title
@@ -99,8 +114,8 @@ namespace Entertainment_App.Models
                         // remove title and last comma from the string
                         line = line.Substring(idx + 2);
                         // replace the "|" with ", "
-                        Vid.Regions = line.Replace("|", ", ");
-
+                        //var strNumbers2 = VideoDetails[4].Split("|");
+//                        Vid.Regions = strNumbers2.Select(int.Parse).ToList();
                     }
                     Videos.Add(Vid);
 

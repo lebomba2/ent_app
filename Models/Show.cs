@@ -18,14 +18,17 @@ namespace Entertainment_App.Models
         public Show(    ) { }
 
 
+                   
+       
+
         public override void Display()
         {
             // print out contents of Array 
             Console.WriteLine();
            Console.WriteLine("showId    title    season    episode    writer ");
 
-
             foreach (var show in Shows)
+
             {
                 Console.Write(show.Id + " ");
                 Console.Write(show.Title + " ");
