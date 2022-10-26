@@ -8,6 +8,6 @@ namespace Entertainment_App.Models
         public string Title { get; set; }
         public abstract void Display();
 public abstract void Read();
-public abstract List<string> Search(string Title);
+public abstract void Search(string Title);
     }
 }

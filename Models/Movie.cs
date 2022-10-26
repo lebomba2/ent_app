@@ -12,7 +12,7 @@ namespace Entertainment_App.Models
 
         //    public string[] Genres { get; set;
         public string Genres;
-        private readonly List<Movie> Movies = new();
+        private  List<Movie> Movies = new();
         private List<String> MovieTitles = new List<string>(); 
                     
         public Movie()
@@ -46,7 +46,7 @@ namespace Entertainment_App.Models
             {
                 Console.WriteLine($"File does not exist {_fileName}");
             }
-            
+
             try
             {
                 var sr = new StreamReader(_fileName);
@@ -97,9 +97,9 @@ namespace Entertainment_App.Models
                         // replace the "|" with ", "
                         film.Genres = line.Replace("|", ", ");
 
-                        }
+                    }
                     Movies.Add(film);
-                
+
                 }
 
                 // close file when done
@@ -109,10 +109,24 @@ namespace Entertainment_App.Models
             {
             }
         }
-        public override List<String> Search(String title){
+            public override void Search(String ti)
+        {
+            // var movies = Movies.Where(m => m.title.Contains("(1990)"));  
+            //Console.WriteLine("Title is : " + ti);
+            var MovTitles = Movies.Where(m => m.Title.Contains((ti)));
+            //Console.WriteLine("Size of Show List is: " + ShowTitles.Count());
 
-            return MovieTitles;
+            foreach (var item in MovTitles)
+            {
+                Console.Write("This is a movie: ");
+                Console.WriteLine(item.Title);
+
+            }
+
         }
-    
+
+
+
     }
+
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
-
+using System.Linq;
 namespace Entertainment_App.Models
 {
     public class Show : Media
@@ -121,11 +121,23 @@ namespace Entertainment_App.Models
             {
             }
         }
-         public override List<String>  Search(String title)
+        public override void Search(String ti)
         {
+            // var movies = Movies.Where(m => m.title.Contains("(1990)"));  
+            //Console.WriteLine("Title is : " + ti);
+            var ShowTitles = Shows.Where(s => s.Title.Contains((ti)));
+            //Console.WriteLine("Size of Show List is: " + ShowTitles.Count());
 
-            return ShowTitles;
+            foreach (var item in ShowTitles)
+            {
+                Console.Write("This is a show: ");
+                Console.WriteLine(item.Title);
+
+            }
+
         }
+
+
 
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Linq;
 
 namespace Entertainment_App.Models
 {
@@ -133,10 +134,22 @@ namespace Entertainment_App.Models
             //Console.WriteLine("Made it to the end of read");
         }
 
-public override List<String>`       ```                  Search(String title)
-        {
 
-            return VideoTitles;
+        public override void Search(String ti)
+        {
+            // var movies = Movies.Where(m => m.title.Contains("(1990)"));  
+            //Console.WriteLine("Title is : " + ti);
+            var VideoTitles = Videos.Where(v => v.Title.Contains((ti)));
+            //Console.WriteLine("Size of Videos List is: " + VideoTitles.Count());
+
+            foreach (var item in VideoTitles)
+            {
+                Console.Write("This is a video: ");
+                Console.WriteLine(item.Title);
+
+            }
+
         }
+
     }
 }
