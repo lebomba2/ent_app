@@ -12,7 +12,7 @@ namespace Entertainment_App.Models
         public int Episode { get; set; }
         public int Season { get; set; }
         public string Writer { get; set; }
-        
+        private List<String> ShowTitles = new List<string>();
 
         // Defau    lt constructor 
         public Show(    ) { }
@@ -121,5 +121,11 @@ namespace Entertainment_App.Models
             {
             }
         }
+         public override List<String>  Search(String title)
+        {
+
+            return ShowTitles;
+        }
+
     }
 }

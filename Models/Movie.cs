@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Entertainment_App.Models
 {
@@ -12,7 +13,8 @@ namespace Entertainment_App.Models
         //    public string[] Genres { get; set;
         public string Genres;
         private readonly List<Movie> Movies = new();
-
+        private List<String> MovieTitles = new List<string>(); 
+                    
         public Movie()
         {
             //Console.WriteLine("movie object created");
@@ -107,5 +109,10 @@ namespace Entertainment_App.Models
             {
             }
         }
+        public override List<String> Search(String title){
+
+            return MovieTitles;
+        }
+    
     }
 }

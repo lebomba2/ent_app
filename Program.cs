@@ -1,5 +1,7 @@
 ﻿using System;
 using Entertainment_App.Models;
+using System.Linq;
+
 
 namespace Entertainment_App
 {
@@ -12,8 +14,9 @@ namespace Entertainment_App
             Console.WriteLine("Press 1 to view movies");
             Console.WriteLine("Press 2 to view Show library ");
             Console.WriteLine("Press 3 to view  Video library");
+Console.WriteLine("Press 4. To search for media:  ");
             Console.WriteLine("Press any other key to exit");
-
+                
             var isValid = true;
             while (isValid)
             {
@@ -28,7 +31,7 @@ namespace Entertainment_App
                     med.Read();
                     med.Display();
                 }
-                else    if (choice == "2")
+                else if (choice == "2")
                 {
                     med = new Show();
                     med.Read();
@@ -45,6 +48,14 @@ namespace Entertainment_App
                     med.Display();
 
                 }
+
+                else if (choice == "4") {
+                    Console.Write("Enter title to search for: ");
+                    var title = Console.ReadLine();
+                
+                }
+
+
                 else
                 {
                     isValid = false;

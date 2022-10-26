@@ -13,6 +13,8 @@ namespace Entertainment_App.Models
         private List<Video> Videos = new();
         public string Format { get; set; }
 
+        private List<String> VideoTitles = new List<string> ();
+
         public int Length { get; set; }
         public  List<int>Regions { get; set; }
 
@@ -109,7 +111,7 @@ namespace Entertainment_App.Models
                         line = line.Substring(idx + 1);
                         // find the next quote
                         idx = line.IndexOf('"');
-                        // extract the e
+                        // extract the e    
                         Vid.Title = line.Substring(0, idx);
                         // remove title and last comma from the string
                         line = line.Substring(idx + 2);
@@ -129,6 +131,12 @@ namespace Entertainment_App.Models
             }
 
             //Console.WriteLine("Made it to the end of read");
+        }
+
+public override List<String>`       ```                  Search(String title)
+        {
+
+            return VideoTitles;
         }
     }
 }
