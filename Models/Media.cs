@@ -9,5 +9,6 @@ namespace Entertainment_App.Models
         public abstract void Display();
 public abstract void Read();
 public abstract void Search(string Title);
+        public abstract void Delete();
     }
 }

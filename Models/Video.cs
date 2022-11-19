@@ -22,6 +22,8 @@ namespace Entertainment_App.Models
 //Default Constructor
         public Video() { }
 
+       public override  void Delete() { }
+
 
         public void PrintRegions()
         {

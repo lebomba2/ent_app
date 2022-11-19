@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ComponentModel;
+using MovieLibraryEntities.Context;
+using MovieLibraryEntities.Models;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.EntityFrameworkCore;
 
 namespace Entertainment_App.Models
 {
@@ -12,28 +16,35 @@ namespace Entertainment_App.Models
 
         //    public string[] Genres { get; set;
         public string Genres;
-        private  List<Movie> Movies = new();
-        private List<String> MovieTitles = new List<string>(); 
-                    
+        private List<Movie> Movies = new();
+        private List<String> MovieTitles = new List<string>();
+        private MovieContext context = new MovieContext();
         public Movie()
         {
             //Console.WriteLine("movie object created");
         }
 
+
+
         public override void Display()
         {
-
-            Console.WriteLine();
-            Console.WriteLine("movieId   title     genres"  );
-;
-            // print out contents of Array 
-            
-            foreach (var Movie in Movies)
+            foreach (var movie in context.Movies)
             {
-                Console.Write(Movie.Id+ " ");
-                Console.Write(Movie.Title + " ");
-                Console.WriteLine(Movie.Genres);
+                Console.Write("MovieID: "  + movie.Id + " ");               Console.WriteLine(movie.Title);
             }
+
+
+            //Console.WriteLine();
+            //Console.WriteLine("movieId   title     genres");
+            //;
+            //// print out contents of Array 
+
+            //foreach (var Movie in Movies)
+            //{
+            //    Console.Write(Movie.Id + " ");
+            //    Console.Write(Movie.Title + " ");
+            //    Console.WriteLine(Movie.Genres);
+            //}
 
 
         }
@@ -109,24 +120,44 @@ namespace Entertainment_App.Models
             {
             }
         }
-            public override void Search(String ti)
+        public override void Search(String ti)
         {
-            // var movies = Movies.Where(m => m.title.Contains("(1990)"));  
-            //Console.WriteLine("Title is : " + ti);
-            var MovTitles = Movies.Where(m => m.Title.Contains((ti)));
-            //Console.WriteLine("Size of Show List is: " + ShowTitles.Count());
+            //// var movies = Movies.Where(m => m.title.Contains("(1990)"));  
+            ////Console.WriteLine("Title is : " + ti);
+            //var MovTitles = Movies.Where(m => m.Title.Contains((ti)));
+            ////Console.WriteLine("Size of Show List is: " + ShowTitles.Count());
 
-            foreach (var item in MovTitles)
+            //foreach (var item in MovTitles)
+            //{
+            //    Console.Write("This is a movie: ");
+            //    Console.WriteLine(item.Title);
+
+            //}
+
+            foreach (var movie in context.Movies)
             {
-                Console.Write("This is a movie: ");
-                Console.WriteLine(item.Title);
-
+                if (movie.Title.Contains(ti))
+                {
+                    Console.WriteLine(movie.Title);
+                }
             }
+
+        }
+        public  override void Delete() {
+            Console.WriteLine("Enter the MovieId to delete");
+            var movieIdToDelete = Convert.ToInt32(Console.ReadLine());
+            //var movieToDelete = MovieContext.GetById(movieIdToDelete);
+
+             var MovieToRemove = context.Movies.FirstOrDefault(x => x.Id == movieIdToDelete );
+
+            context.Remove(MovieToRemove);context.SaveChanges();
+
+            //_repository.Delete(movieToDelete);
+
 
         }
 
 
 
     }
-
 }

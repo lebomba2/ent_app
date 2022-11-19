@@ -38,8 +38,10 @@ namespace Entertainment_App.Models
 
             }
         }
-            
 
+
+
+        public  override void Delete() { }
 
         public override void Read()
         {
@@ -136,8 +138,6 @@ namespace Entertainment_App.Models
             }
 
         }
-
-
 
     }
 }
