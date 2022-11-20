@@ -32,6 +32,9 @@ med = new Movie();
                 }
                 else if (choice == "2")
                 {
+                    med = new Movie();
+                    med.Add();
+
 
                     // Add Movie 
                 }
@@ -54,8 +57,11 @@ med = new Movie();
 
                 }
 
-                else if (choice == "5") { 
-                // update Movie Listing
+                else if (choice == "5") {
+                    // update Movie Listing
+                    med = new Movie();
+                    med.Update();
+
 
 
                 }

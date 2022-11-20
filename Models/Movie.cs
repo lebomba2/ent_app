@@ -7,6 +7,7 @@ using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 
 namespace Entertainment_App.Models
 {
@@ -19,13 +20,73 @@ namespace Entertainment_App.Models
         private List<Movie> Movies = new();
         private List<String> MovieTitles = new List<string>();
         private MovieContext context = new MovieContext();
+        private DateTime ReleaseDate;
+        
         public Movie()
         {
             //Console.WriteLine("movie object created");
         }
+        public override void Delete()
+        {
+            Console.WriteLine("Enter the MovieId to delete");
+            var movieIdToDelete = Convert.ToInt32(Console.ReadLine());
+            //var movieToDelete = MovieContext.GetById(movieIdToDelete);
+
+
+            //            var obj = myList.FirstOrDefault(x => x.MyFieldName == "fieldName")
+            //if (obj != null)
+
+            var MovieToRemove = context.Movies.FirstOrDefault(x => x.Id == movieIdToDelete);
+
+            context.Remove(MovieToRemove);
+            context.SaveChanges();
+
+            //_repository.Delete(movieToDelete);
+            Console.WriteLine("Movie was removed!");
+
+        }
+
+        public override void Update()
+        {
+            var movieIdToUpdate = Convert.ToInt32(Console.ReadLine());
+            
+            var MovieToUpdate = context.Movies.FirstOrDefault(x => x.Id == movieIdToUpdate);
+
+
+            // note that we are assuming the user wants to update the title - again not good
+            Console.WriteLine($"Here is your movie {MovieToUpdate.Title}");
+            Console.WriteLine("What do you want to change title to?");
+            var newTitle = Console.ReadLine();
+            MovieToUpdate.Title = newTitle;
+            context.Update(MovieToUpdate);
+            context.SaveChanges();
+            //context.Remove(MovieToRemove);
+//            context.SaveChanges();
 
 
 
+
+        }
+        public override void Add()
+        {
+            // Add Movie To Database
+            Console.WriteLine("Enter the movie title");
+            var movieTitle = Console.ReadLine();
+
+            Console.WriteLine("Enter the release date");
+            var movieRelease = Console.ReadLine();
+            var movieReleaseDate = DateTime.Parse(movieRelease);
+
+            var movie = new Movie()
+            {
+                Title = movieTitle,
+                ReleaseDate = movieReleaseDate
+            };
+
+            //context.Add(Movie);
+
+        }
+    
         public override void Display()
         {
             foreach (var movie in context.Movies)
@@ -45,7 +106,6 @@ namespace Entertainment_App.Models
             //    Console.Write(Movie.Title + " ");
             //    Console.WriteLine(Movie.Genres);
             //}
-
 
         }
 
@@ -143,20 +203,8 @@ namespace Entertainment_App.Models
             }
 
         }
-        public  override void Delete() {
-            Console.WriteLine("Enter the MovieId to delete");
-            var movieIdToDelete = Convert.ToInt32(Console.ReadLine());
-            //var movieToDelete = MovieContext.GetById(movieIdToDelete);
 
-             var MovieToRemove = context.Movies.FirstOrDefault(x => x.Id == movieIdToDelete );
-
-            context.Remove(MovieToRemove);context.SaveChanges();
-
-            //_repository.Delete(movieToDelete);
-            Console.WriteLine("Movie was removed!");
-
-        }
-
+       
 
 
     }
