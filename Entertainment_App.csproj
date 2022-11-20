@@ -7,18 +7,10 @@
 
   <ItemGroup>
     <None Remove="Files\movies.csv" />
-    <None Remove="Files\shows.csv" />
-    <None Remove="Files\videos.csv" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Files\movies.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Files\shows.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Files\videos.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
