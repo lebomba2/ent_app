@@ -153,7 +153,7 @@ namespace Entertainment_App.Models
             context.Remove(MovieToRemove);context.SaveChanges();
 
             //_repository.Delete(movieToDelete);
-
+            Console.WriteLine("Movie was removed!");
 
         }
 

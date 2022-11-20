@@ -38,6 +38,7 @@ med = new Movie();
                 else if (choice == "3")
                 {
                     // Delete Movie
+                    med = new Movie();
                     med.Delete();
                 }
 
