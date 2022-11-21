@@ -21,6 +21,7 @@ namespace Entertainment_App.Models
         private List<String> MovieTitles = new List<string>();
         private MovieContext context = new MovieContext();
         private DateTime ReleaseDate;
+        private string Title;
         
         public Movie()
         {
@@ -28,26 +29,45 @@ namespace Entertainment_App.Models
         }
         public override void Delete()
         {
-            Console.WriteLine("Enter the MovieId to delete");
+            Console.WriteLine("Enter the MovieId to delete");ErrorEventArgs checking added to Delete method. Add method still not functioning.                                  
             var movieIdToDelete = Convert.ToInt32(Console.ReadLine());
-            //var movieToDelete = MovieContext.GetById(movieIdToDelete);
+                                      //var movieToDelete = MovieContext.GetById(movieIdToDelete);              
 
 
             //            var obj = myList.FirstOrDefault(x => x.MyFieldName == "fieldName")
             //if (obj != null)
 
             var MovieToRemove = context.Movies.FirstOrDefault(x => x.Id == movieIdToDelete);
+            var confirm = false;
 
-            context.Remove(MovieToRemove);
-            context.SaveChanges();
+            if(MovieToRemove != null)
+            {
+                Console.WriteLine("Found " + MovieToRemove.Title + ", are you sure you want to remove it? Y/N");
+                var confirmStr = Console.ReadLine().ToUpper();
+                confirm = confirmStr == "Y" ? true : false;
 
-            //_repository.Delete(movieToDelete);
-            Console.WriteLine("Movie was removed!");
+            } else
+            {
+                Console.WriteLine("No movie by that ID found.");
+                confirm = false;
+            }
+
+            if(confirm)
+            {
+                context.Remove(MovieToRemove);
+                context.SaveChanges();
+
+                //_repository.Delete(movieToDelete);
+                Console.WriteLine("Movie was removed!");
+            }
+
+            
 
         }
 
         public override void Update()
         {
+            Console.WriteLine("Enter the ID of the moive you would like to update:");
             var movieIdToUpdate = Convert.ToInt32(Console.ReadLine());
             
             var MovieToUpdate = context.Movies.FirstOrDefault(x => x.Id == movieIdToUpdate);
@@ -73,7 +93,7 @@ namespace Entertainment_App.Models
             Console.WriteLine("Enter the movie title");
             var movieTitle = Console.ReadLine();
 
-            Console.WriteLine("Enter the release date");
+            Console.WriteLine("Enter the release date MM/DD/YYYY:");
             var movieRelease = Console.ReadLine();
             var movieReleaseDate = DateTime.Parse(movieRelease);
 
@@ -83,7 +103,9 @@ namespace Entertainment_App.Models
                 ReleaseDate = movieReleaseDate
             };
 
-            //context.Add(Movie);
+            //InvalidOperationException: The entity type 'Movie' was not found.
+            //Ensure that the entity type has been added to the model.
+            context.Add(movie);
 
         }
     
