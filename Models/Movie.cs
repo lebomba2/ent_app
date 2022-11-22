@@ -14,7 +14,7 @@ namespace Entertainment_App.Models
     public class Movie : Media
     {
         private string _fileName;
-
+         
         //    public string[] Genres { get; set;
         public string Genres;
         private List<Movie> Movies = new();
@@ -29,7 +29,7 @@ namespace Entertainment_App.Models
         }
         public override void Delete()
         {
-            Console.WriteLine("Enter the MovieId to delete");ErrorEventArgs checking added to Delete method. Add method still not functioning.                                  
+            Console.WriteLine("Enter the MovieId to delete");//ErrorEventArgs checking added to Delete method. Add method still not functioning.                                  
             var movieIdToDelete = Convert.ToInt32(Console.ReadLine());
                                       //var movieToDelete = MovieContext.GetById(movieIdToDelete);              
 
@@ -97,7 +97,7 @@ namespace Entertainment_App.Models
             var movieRelease = Console.ReadLine();
             var movieReleaseDate = DateTime.Parse(movieRelease);
 
-            var movie = new Movie()
+            var movie = new MovieLibraryEntities.Models.Movie()
             {
                 Title = movieTitle,
                 ReleaseDate = movieReleaseDate
@@ -106,14 +106,34 @@ namespace Entertainment_App.Models
             //InvalidOperationException: The entity type 'Movie' was not found.
             //Ensure that the entity type has been added to the model.
             context.Add(movie);
+            context.SaveChanges();
 
         }
     
         public override void Display()
         {
-            foreach (var movie in context.Movies)
+            var movies = context.Movies
+                .Include(x => x.MovieGenres)
+                .ThenInclude(x => x.Genre)
+                .ToList();
+
+            foreach (var movie in movies)
             {
-                Console.Write("MovieID: "  + movie.Id + " ");               Console.WriteLine(movie.Title);
+                var genreString = string.Empty;
+                foreach (var genre in movie?.MovieGenres ?? new List<MovieGenre>())
+                {
+                    if (genreString.Length == 0)
+                    {
+                        genreString += genre?.Genre?.Name;
+                    }
+                    else
+                    {
+                        genreString += ", " + genre?.Genre?.Name;
+                    }
+                    
+                }
+                    Console.Write("MovieID: "  + movie.Id + " ");               
+                    Console.WriteLine(movie.Title + " " + genreString);
             }
 
 
