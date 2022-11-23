@@ -14,15 +14,13 @@ namespace Entertainment_App.Models
     public class Movie : Media
     {
         private string _fileName;
-         
-        //    public string[] Genres { get; set;
+
         public string Genres;
         private List<Movie> Movies = new();
-        private List<String> MovieTitles = new List<string>();
-        private MovieContext context = new MovieContext();
+       private MovieContext context = new MovieContext();
         private DateTime ReleaseDate;
         private string Title;
-        
+
         public Movie()
         {
             //Console.WriteLine("movie object created");
@@ -31,28 +29,24 @@ namespace Entertainment_App.Models
         {
             Console.WriteLine("Enter the MovieId to delete");//ErrorEventArgs checking added to Delete method. Add method still not functioning.                                  
             var movieIdToDelete = Convert.ToInt32(Console.ReadLine());
-                                      //var movieToDelete = MovieContext.GetById(movieIdToDelete);              
-
-
-            //            var obj = myList.FirstOrDefault(x => x.MyFieldName == "fieldName")
-            //if (obj != null)
 
             var MovieToRemove = context.Movies.FirstOrDefault(x => x.Id == movieIdToDelete);
             var confirm = false;
 
-            if(MovieToRemove != null)
+            if (MovieToRemove != null)
             {
                 Console.WriteLine("Found " + MovieToRemove.Title + ", are you sure you want to remove it? Y/N");
                 var confirmStr = Console.ReadLine().ToUpper();
                 confirm = confirmStr == "Y" ? true : false;
 
-            } else
+            }
+            else
             {
                 Console.WriteLine("No movie by that ID found.");
                 confirm = false;
             }
 
-            if(confirm)
+            if (confirm)
             {
                 context.Remove(MovieToRemove);
                 context.SaveChanges();
@@ -60,33 +54,49 @@ namespace Entertainment_App.Models
                 //_repository.Delete(movieToDelete);
                 Console.WriteLine("Movie was removed!");
             }
-
-            
-
         }
 
         public override void Update()
         {
-            Console.WriteLine("Enter the ID of the moive you would like to update:");
+            Console.WriteLine("Enter the ID of the movie you would like to update:");
             var movieIdToUpdate = Convert.ToInt32(Console.ReadLine());
-            
-            var MovieToUpdate = context.Movies.FirstOrDefault(x => x.Id == movieIdToUpdate);
 
+            var MovieToUpdate = context.Movies.FirstOrDefault(x => x.Id == movieIdToUpdate);
 
             // note that we are assuming the user wants to update the title - again not good
             Console.WriteLine($"Here is your movie {MovieToUpdate.Title}");
-            Console.WriteLine("What do you want to change title to?");
-            var newTitle = Console.ReadLine();
-            MovieToUpdate.Title = newTitle;
-            context.Update(MovieToUpdate);
+
+            Console.Write("Do you want to update the movie title? Type Y for yes: ");
+            var answer = Console.ReadLine();
+
+            if (answer == "Y" || answer == "y")
+            {
+                Console.WriteLine("What do you want to change title to?");
+                var newTitle = Console.ReadLine();
+
+                MovieToUpdate.Title = newTitle;
+                context.Update(MovieToUpdate);
+            }
+
+            Console.WriteLine("Do you want to update the movie date? Type Y for yes: " );
+            var answer2 = Console.ReadLine();   
+            
+            if(answer2 == "Y" || answer2 == "y"){
+
+                Console.WriteLine("Enter the updated release date MM/DD/YYYY:");
+                var movieRelease = Console.ReadLine();
+                var NewmovieReleaseDate = DateTime.Parse(movieRelease);
+
+                MovieToUpdate.ReleaseDate = NewmovieReleaseDate;
+                context.Update(MovieToUpdate);
+
+            }
+
             context.SaveChanges();
-            //context.Remove(MovieToRemove);
-//            context.SaveChanges();
-
-
-
-
+            
+            Console.WriteLine("You are done updating");
         }
+
         public override void Add()
         {
             // Add Movie To Database
@@ -107,9 +117,10 @@ namespace Entertainment_App.Models
             //Ensure that the entity type has been added to the model.
             context.Add(movie);
             context.SaveChanges();
+            Console.WriteLine("Movie was added!");
 
         }
-    
+
         public override void Display()
         {
             var movies = context.Movies
@@ -130,10 +141,10 @@ namespace Entertainment_App.Models
                     {
                         genreString += ", " + genre?.Genre?.Name;
                     }
-                    
+
                 }
-                    Console.Write("MovieID: "  + movie.Id + " ");               
-                    Console.WriteLine(movie.Title + " " + genreString);
+                Console.Write("MovieID: " + movie.Id + " ");
+                Console.WriteLine(movie.Title + " " + genreString);
             }
 
 
@@ -224,7 +235,7 @@ namespace Entertainment_App.Models
         }
         public override void Search(String ti)
         {
-            //// var movies = Movies.Where(m => m.title.Contains("(1990)"));  
+            //// var movies = Movies.Where(m => m.title.Contains("(1990)"));  
             ////Console.WriteLine("Title is : " + ti);
             //var MovTitles = Movies.Where(m => m.Title.Contains((ti)));
             ////Console.WriteLine("Size of Show List is: " + ShowTitles.Count());
@@ -246,7 +257,7 @@ namespace Entertainment_App.Models
 
         }
 
-       
+
 
 
     }
