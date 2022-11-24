@@ -19,7 +19,7 @@ namespace Entertainment_App.Models
         private List<Movie> Movies = new();
        private MovieContext context = new MovieContext();
         private DateTime ReleaseDate;
-        private string Title;
+        public  string Title;
 
         public Movie()
         {
