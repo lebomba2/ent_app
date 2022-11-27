@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Entertainment_App.Models
 {
@@ -15,6 +16,8 @@ namespace Entertainment_App.Models
     {
         public int Age{ get; set;}
     public String   Gender { get; set; }
+        private MovieContext context = new MovieContext();
+
 
         public String ZipCode { get; set;}
         
@@ -26,16 +29,25 @@ Gender = "Unknown";
             Age = 0;
 
         }
-        public void CreateUser() {
+        public User  CreateUser(User Doe) {
             Console.Write("Enter user's Age: ");
-            this.Age = Convert.ToInt32( Console.ReadLine());
+ Doe.Age               = Convert.ToInt32( Console.ReadLine());
 
             Console.Write("Enter user's gender: ");
-            this.Gender = Console.ReadLine();
+            Doe.Gender = Console.ReadLine();
             Console.Write("Enter user's zip code: ");
-this.ZipCode = Console.ReadLine();  
-        
+  Doe.ZipCode  = Console.ReadLine();
+
+            return Doe;
         }
+
+        public void Add(User AddUser) {
+            context.Add(AddUser);
+            context.SaveChanges();
+
+            Console.WriteLine("New user was added.");
+        }
+
 
     }
 }

@@ -16,6 +16,7 @@ namespace Entertainment_App
             Console.WriteLine("Press 3 to To Delete Movie");
 Console.WriteLine("Press 4. To search for Movie:  ");
             Console.WriteLine("Press 5. To Update");
+            Console.WriteLine("Press 6 to enter new user: ");
             Console.WriteLine("Press any other key to exit");
                 
             var isValid = true;
@@ -27,7 +28,7 @@ Console.WriteLine("Press 4. To search for Movie:  ");
                 if (choice == "1")
                 {
                     // Dis  play Movies
-med = new Movie();
+                    med = new Movie();
                     med.Display();
                 }
                 else if (choice == "2")
@@ -57,15 +58,20 @@ med = new Movie();
 
                 }
 
-                else if (choice == "5") {
+                else if (choice == "5")
+                {
                     // update Movie Listing
                     med = new Movie();
                     med.Update();
+                }
+                else if (choice == "6") {
+                    User NewUser = new User();
 
-
+                    NewUser.CreateUser(NewUser);
+                    NewUser.Add(NewUser);
 
                 }
-                else
+else
                 {
                     isValid = false;
                     Console.WriteLine("You have exited the program.");
