@@ -24,25 +24,41 @@ namespace Entertainment_App.Models
 
         public User()
         {
-Gender = "Unknown";
+            Gender = "Unknown";
             ZipCode = "Unknown";
             Age = 0;
-
         }
-        public User  CreateUser(User Doe) {
+
+ //       public User  CreateUser(User Doe) {
+ //           Console.Write("Enter user's Age: ");
+ //Doe.Age               = Convert.ToInt32( Console.ReadLine());
+
+ //           Console.Write("Enter user's gender: ");
+ //           Doe.Gender = Console.ReadLine();
+ //           Console.Write("Enter user's zip code: ");
+ // Doe.ZipCode  = Console.ReadLine();
+
+ //           return Doe;
+ //       }
+
+        public void Add() {
+            var newUser = new MovieLibraryEntities.Models.User();
+            var newOccupation = new MovieLibraryEntities.Models.Occupation();
+
             Console.Write("Enter user's Age: ");
- Doe.Age               = Convert.ToInt32( Console.ReadLine());
+            newUser.Age = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Enter user's gender: ");
-            Doe.Gender = Console.ReadLine();
+            newUser.Gender = Console.ReadLine();
             Console.Write("Enter user's zip code: ");
-  Doe.ZipCode  = Console.ReadLine();
+            newUser.ZipCode = Console.ReadLine();
 
-            return Doe;
-        }
+            //occupation stuff
+            // loop through newOccupation object the same way you did for movie list from database
+            //  and print to screen for user to choose
+            // save to newUser object 
 
-        public void Add(User AddUser) {
-            context.Add(AddUser);
+            context.Add(newUser);
             context.SaveChanges();
 
             Console.WriteLine("New user was added.");

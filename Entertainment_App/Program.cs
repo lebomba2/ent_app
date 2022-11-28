@@ -67,8 +67,8 @@ Console.WriteLine("Press 4. To search for Movie:  ");
                 else if (choice == "6") {
                     User NewUser = new User();
 
-                    NewUser.CreateUser(NewUser);
-                    NewUser.Add(NewUser);
+                    //NewUser.CreateUser(NewUser);
+                    NewUser.Add();
 
                 }
 else
