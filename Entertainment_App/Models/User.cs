@@ -43,7 +43,10 @@ namespace Entertainment_App.Models
 
         public void Add() {
             var newUser = new MovieLibraryEntities.Models.User();
-            var newOccupation = new MovieLibraryEntities.Models.Occupation();
+            //var newOccupation = new MovieLibraryEntities.Models.Occupation();
+                var newOccupation = context.Occupations.FirstOrDefault(x => x.Name == "Scientist");
+            newUser.Occupation = newOccupation;
+
 
             Console.Write("Enter user's Age: ");
             newUser.Age = Convert.ToInt32(Console.ReadLine());

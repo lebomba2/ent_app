@@ -147,19 +147,6 @@ namespace Entertainment_App.Models
                 Console.WriteLine(movie.Title + " " + genreString);
             }
 
-
-            //Console.WriteLine();
-            //Console.WriteLine("movieId   title     genres");
-            //;
-            //// print out contents of Array 
-
-            //foreach (var Movie in Movies)
-            //{
-            //    Console.Write(Movie.Id + " ");
-            //    Console.Write(Movie.Title + " ");
-            //    Console.WriteLine(Movie.Genres);
-            //}
-
         }
 
         public override void Read()
