@@ -17,9 +17,9 @@ namespace Entertainment_App.Models
 
         public string Genres;
         private List<Movie> Movies = new();
-       private MovieContext context = new MovieContext();
+        private MovieContext context = new MovieContext();
         private DateTime ReleaseDate;
-        public  string Title;
+        public string Title;
 
         public Movie()
         {
@@ -78,10 +78,11 @@ namespace Entertainment_App.Models
                 context.Update(MovieToUpdate);
             }
 
-            Console.WriteLine("Do you want to update the movie date? Type Y for yes: " );
-            var answer2 = Console.ReadLine();   
-            
-            if(answer2 == "Y" || answer2 == "y"){
+            Console.WriteLine("Do you want to update the movie date? Type Y for yes: ");
+            var answer2 = Console.ReadLine();
+
+            if (answer2 == "Y" || answer2 == "y")
+            {
 
                 Console.WriteLine("Enter the updated release date MM/DD/YYYY:");
                 var movieRelease = Console.ReadLine();
@@ -93,7 +94,7 @@ namespace Entertainment_App.Models
             }
 
             context.SaveChanges();
-            
+
             Console.WriteLine("You are done updating");
         }
 
@@ -148,7 +149,7 @@ namespace Entertainment_App.Models
             }
 
         }
-
+                
         public override void Read()
         {
             _fileName = $"{Environment.CurrentDirectory}/Files/movies.csv";
@@ -220,6 +221,7 @@ namespace Entertainment_App.Models
             {
             }
         }
+        
         public override void Search(String ti)
         {
             //// var movies = Movies.Where(m => m.title.Contains("(1990)"));  
