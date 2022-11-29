@@ -44,24 +44,25 @@ namespace Entertainment_App.Models
         public void Add()
         {
             var OCCUPATIONS = context.Occupations.ToList();
-            
+
             Console.WriteLine("List of occupations:");
 
             foreach (var occupation in OCCUPATIONS)
             {
-                Console.WriteLine(occupation.Name);            }
+                Console.WriteLine(occupation.Name);
+            }
 
-                var newUser = new MovieLibraryEntities.Models.User();
-            //var newOccupation = new MovieLibraryEntities.Models.Occupation();
-            var newOccupation = context.Occupations.FirstOrDefault(x => x.Name == "Scientist");
+            var newUser = new MovieLibraryEntities.Models.User();
+            var newOccupation = new MovieLibraryEntities.Models.Occupation();
+            //var newOccupation = context.Occupations.FirstOrDefault(x => x.Name == "Scientist");
             Console.Write("Enter occupation from list: ");
             newOccupation.Name = Console.ReadLine();
             newUser.Occupation = newOccupation;
 
-            Console.WriteLine("Made it pass entering occupation:");
+            //Console.WriteLine("Made it pass entering occupation:");
             Console.Write("Enter user's Age: ");
             newUser.Age = Convert.ToInt32(Console.ReadLine());
-            
+
             Console.Write("Enter user's gender: ");
             newUser.Gender = Console.ReadLine();
             Console.Write("Enter user's zip code: ");
@@ -70,12 +71,16 @@ namespace Entertainment_App.Models
             context.Add(newUser);
             context.SaveChanges();
 
-
-            //var LastUserEntered = context.Users.LastOrDefault();
-              //  Console.WriteLine("User ID: " + LastUserEntered.Id  );
-                Console.WriteLine("New user was added.");
+            Console.WriteLine("New user was added.");
+            var LastUserEntered = context.Users.OrderBy(x => x.Id).LastOrDefault();
+            Console.WriteLine("User ID: " + LastUserEntered.Id
+                + " Age: " + LastUserEntered.Age
+                + " Gender: " + LastUserEntered.Gender
+                + " Zip: " + LastUserEntered.ZipCode
+                + " Occupation: " + LastUserEntered.Occupation.Name);
         }
 
 
     }
 }
+    
