@@ -56,27 +56,24 @@ namespace Entertainment_App.Models
             var newOccupation = context.Occupations.FirstOrDefault(x => x.Name == "Scientist");
             Console.Write("Enter occupation from list: ");
             newOccupation.Name = Console.ReadLine();
-
             newUser.Occupation = newOccupation;
 
-
+            Console.WriteLine("Made it pass entering occupation:");
             Console.Write("Enter user's Age: ");
             newUser.Age = Convert.ToInt32(Console.ReadLine());
-
+            
             Console.Write("Enter user's gender: ");
             newUser.Gender = Console.ReadLine();
             Console.Write("Enter user's zip code: ");
             newUser.ZipCode = Console.ReadLine();
 
-            //occupation stuff
-            // loop through newOccupation object the same way you did for movie list from database
-            //  and print to screen for user to choose
-            // save to newUser object 
-
             context.Add(newUser);
             context.SaveChanges();
 
-            Console.WriteLine("New user was added.");
+
+            //var LastUserEntered = context.Users.LastOrDefault();
+              //  Console.WriteLine("User ID: " + LastUserEntered.Id  );
+                Console.WriteLine("New user was added.");
         }
 
 
