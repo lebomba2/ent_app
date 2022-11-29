@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MovieLibraryEntities.Context;
+using System;
 using System.Linq;
-using System.Net.Cache;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using MovieLibraryEntities.Context;
-using MovieLibraryEntities.Models;
-using System.Security.Cryptography.X509Certificates;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Entertainment_App.Models
 {
@@ -17,7 +9,6 @@ namespace Entertainment_App.Models
         public int Age { get; set; }
         public String Gender { get; set; }
         private MovieContext context = new MovieContext();
-
 
         public String ZipCode { get; set; }
 
@@ -83,4 +74,4 @@ namespace Entertainment_App.Models
 
     }
 }
-    
+

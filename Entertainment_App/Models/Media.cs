@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Entertainment_App.Models
+﻿namespace Entertainment_App.Models
 {
     public abstract class Media
     {

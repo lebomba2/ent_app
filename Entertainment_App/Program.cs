@@ -1,6 +1,5 @@
-﻿using System;
-using Entertainment_App.Models;
-using System.Linq;
+﻿using Entertainment_App.Models;
+using System;
 
 
 namespace Entertainment_App
@@ -10,15 +9,15 @@ namespace Entertainment_App
         private static void Main(string[] args)
         {
             Media med = null;
-            
+
             Console.WriteLine("Press 1 to view movies");
             Console.WriteLine("Press 2 Add Movie");
             Console.WriteLine("Press 3 to To Delete Movie");
-Console.WriteLine("Press 4. To search for Movie:  ");
+            Console.WriteLine("Press 4. To search for Movie:  ");
             Console.WriteLine("Press 5. To Update");
             Console.WriteLine("Press 6 to enter new user: ");
             Console.WriteLine("Press any other key to exit");
-                
+
             var isValid = true;
             while (isValid)
             {
@@ -64,14 +63,15 @@ Console.WriteLine("Press 4. To search for Movie:  ");
                     med = new Movie();
                     med.Update();
                 }
-                else if (choice == "6") {
+                else if (choice == "6")
+                {
                     User NewUser = new User();
 
                     //NewUser.CreateUser(NewUser);
                     NewUser.Add();
 
                 }
-else
+                else
                 {
                     isValid = false;
                     Console.WriteLine("You have exited the program.");

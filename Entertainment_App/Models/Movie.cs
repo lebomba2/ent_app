@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieLibraryEntities.Context;
+using MovieLibraryEntities.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.ComponentModel;
-using MovieLibraryEntities.Context;
-using MovieLibraryEntities.Models;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.EntityFrameworkCore;
-using System.Collections;
 
 namespace Entertainment_App.Models
 {
@@ -149,7 +146,7 @@ namespace Entertainment_App.Models
             }
 
         }
-                
+
         public override void Read()
         {
             _fileName = $"{Environment.CurrentDirectory}/Files/movies.csv";
@@ -221,7 +218,7 @@ namespace Entertainment_App.Models
             {
             }
         }
-        
+
         public override void Search(String ti)
         {
             //// var movies = Movies.Where(m => m.title.Contains("(1990)"));  
