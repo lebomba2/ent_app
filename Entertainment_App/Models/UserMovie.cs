@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MovieLibraryEntities.Context;
-
+using MovieLibraryEntities.Models;
 
 namespace Entertainment_App.Models
 {
@@ -23,7 +23,32 @@ namespace Entertainment_App.Models
             RatingAt = DateTime.Now;
             UserId = 0;
             MovieId = 0;
+        }
 
+        public void TopRated()
+        {
+            //List top rated movie by age bracket or occupation
+            //Sort alphabetically and by rating and display just the first movie
+            Console.WriteLine("Do you want to view top rated movies by ");
+            Console.WriteLine("age or by occupation? Press A for age or O for occupation ");
+            var choice = Console.ReadLine();
+            if (choice == "A" || choice == "a")
+            {
+                Console.WriteLine("You have entered A for age");
+                Console.Write("Enter an Age; ");
+                var age = Console.ReadLine();
+            }
+            else if (choice == "O" || choice == "o")
+            {
+                Console.WriteLine("You have typed o for occupation");
+                Console.Write("Enter an occupation: ");
+                var occ = Console.ReadLine();
+
+            }
+            else
+            {
+                Console.WriteLine("You have made an invalid selection. ");
+            }
         }
 
         public void AddUserMovie()
