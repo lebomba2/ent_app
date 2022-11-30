@@ -26,14 +26,14 @@ namespace Entertainment_App.Models
 
         }
 
-
-
         public void AddUserMovie()
         {
 
             // Get User ID from user
             Console.Write("Enter User ID: ");
             UserId = Convert.ToInt32(Console.ReadLine());
+
+
 
             var MovieTitle = "";
 
@@ -47,6 +47,7 @@ namespace Entertainment_App.Models
             Movie movie = new Movie();
             movie.Read();
 
+            // Display Movies to Screen
             movie.Search(MovieTitle);
             Console.WriteLine("Choose the movie ID you want to rate: ");
             var idToRate = Convert.ToInt32(Console.ReadLine());
@@ -55,7 +56,8 @@ namespace Entertainment_App.Models
 
 
             var userMovie = new MovieLibraryEntities.Models.UserMovie();
-            userMovie.Rating = 2;
+            Console.Write("What do you want to rate this movie as: ");
+            userMovie.Rating = Convert.ToInt32(Console.ReadLine());
             userMovie.RatedAt = DateTime.Now;
 
             // set up the database relationships
@@ -67,10 +69,14 @@ namespace Entertainment_App.Models
 
             // commit
             context.SaveChanges();
-                
+
             Console.WriteLine("New rating was added.");
             var LastRatingEntered = context.UserMovies.OrderBy(x => x.RatedAt).LastOrDefault();
             Console.WriteLine("Last Movie Rated: " + LastRatingEntered.Movie.Title);
+            Console.WriteLine("Movie recieved a rating of: " + LastRatingEntered.Rating);
+            Console.WriteLine("Rated by user: " + LastRatingEntered.User);
+
+            Console.WriteLine("Rated at: " + LastRatingEntered.RatedAt);
         }
 
 
