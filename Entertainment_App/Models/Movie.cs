@@ -17,7 +17,7 @@ namespace Entertainment_App.Models
         private MovieContext context = new MovieContext();
         private DateTime ReleaseDate;
         public string Title;
-
+            
         public Movie()
         {
             //Console.WriteLine("movie object created");
@@ -237,9 +237,13 @@ namespace Entertainment_App.Models
             {
                 if (movie.Title.Contains(ti))
                 {
+                    Console.Write("ID: " + movie.Id + " ");
                     Console.WriteLine(movie.Title);
                 }
+
             }
+            Console.WriteLine("Done searching");
+
 
         }
 

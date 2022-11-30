@@ -16,6 +16,7 @@ namespace Entertainment_App
             Console.WriteLine("Press 4. To search for Movie:  ");
             Console.WriteLine("Press 5. To Update");
             Console.WriteLine("Press 6 to enter new user: ");
+            Console.WriteLine("Press 7 to enter movie rating: ");
             Console.WriteLine("Press any other key to exit");
 
             var isValid = true;
@@ -70,6 +71,13 @@ namespace Entertainment_App
                     //NewUser.CreateUser(NewUser);
                     NewUser.Add();
 
+                }
+                else if (choice == "7")
+                {
+
+                    UserMovie uMovie = new UserMovie();
+
+                    uMovie.AddUserMovie();
                 }
                 else
                 {
