@@ -77,11 +77,12 @@ namespace Entertainment_App
                 {
 
                     UserMovie uMovie = new UserMovie();
-
                     uMovie.AddUserMovie();
                 }
-                else if (choice == "8") { 
-                                    
+                else if (choice == "8")
+                {
+                    UserMovie UserRating = new UserMovie();
+                    UserRating.TopRated();
                 }
                 else
                 {

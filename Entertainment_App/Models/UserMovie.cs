@@ -16,6 +16,19 @@ namespace Entertainment_App.Models
         public int MovieId { get; set; }
         private MovieContext context = new MovieContext();
 
+
+
+        /*
+        
+psuedo code to check if an item exists
+  var movies = db.Movies.Where(x=>x.Title.Contains("Utopia"));
+    if (movies.Any()) // this returns a true/false boolean
+    {
+        // process if any exist
+    }
+     
+
+       */
         // Default Constructor
         public UserMovie()
         {
@@ -36,7 +49,27 @@ namespace Entertainment_App.Models
             {
                 Console.WriteLine("You have entered A for age");
                 Console.Write("Enter an Age; ");
-                var age = Console.ReadLine();
+                var age = Convert.ToInt32(Console.ReadLine());
+                //find all movies reviewed by x age
+                var moviesByAge = context.UserMovies.Where(m => m.User.Age == age).ToList();
+                Console.WriteLine("Found Movies by age: ");
+                //print out all movies found, or indicate none found by age
+                if (moviesByAge.Count > 0)
+                {
+                    foreach (var userMovie in moviesByAge)
+                    {
+                        Console.WriteLine("Title: " + userMovie.Movie.Title
+                            + " Rating: " + userMovie.Rating
+                            + " Age: " + userMovie.User.Age);
+                    }
+                    //get top movie
+                    var topRatedByAge = moviesByAge.OrderBy(m => m.Rating).FirstOrDefault();
+                    Console.WriteLine("Top moive by age: " + topRatedByAge.Movie.Title);
+                }
+                else
+                {
+                    Console.WriteLine("No movies found by that age.");
+                } 
             }
             else if (choice == "O" || choice == "o")
             {
@@ -55,10 +88,16 @@ namespace Entertainment_App.Models
         {
 
             // Get User ID from user
-            Console.Write("Enter User ID: ");
-            UserId = Convert.ToInt32(Console.ReadLine());
-
-
+            int UserId = 0;
+            while (UserId == 0)
+            {
+                Console.Write("Enter User ID: ");
+                bool success = int.TryParse(Console.ReadLine(), out UserId);
+                if (success == false)
+                {
+                    Console.WriteLine("You have entered a non integer.");
+                }
+            }
 
             var MovieTitle = "";
 
@@ -79,17 +118,28 @@ namespace Entertainment_App.Models
 
             var movieToRate = context.Movies.FirstOrDefault(m => m.Id == idToRate);
 
-
             var userMovie = new MovieLibraryEntities.Models.UserMovie();
-            Console.Write("What do you want to rate this movie as: ");
-            userMovie.Rating = Convert.ToInt32(Console.ReadLine());
+
+            var UserRating = 0;
+            bool IsRatingValid = false;
+            while (IsRatingValid == false)
+            {
+                Console.Write("What do you want to rate this movie as choose a number from 1 to 5: ");
+                UserRating = Convert.ToInt32(Console.ReadLine());
+
+                if(UserRating >= 1 && UserRating <= 5 )
+                {
+                    IsRatingValid = true;
+                }
+            }
+
+            userMovie.Rating = UserRating;
             userMovie.RatedAt = DateTime.Now;
 
             // set up the database relationships
             userMovie.User = user;
             userMovie.Movie = movieToRate;
 
-            // db.Users.Add(user);
             context.UserMovies.Add(userMovie);
 
             // commit
@@ -99,7 +149,7 @@ namespace Entertainment_App.Models
             var LastRatingEntered = context.UserMovies.OrderBy(x => x.RatedAt).LastOrDefault();
             Console.WriteLine("Last Movie Rated: " + LastRatingEntered.Movie.Title);
             Console.WriteLine("Movie recieved a rating of: " + LastRatingEntered.Rating);
-            Console.WriteLine("Rated by user: " + LastRatingEntered.User);
+            Console.WriteLine("Rated by user: " + LastRatingEntered.User.Id);
 
             Console.WriteLine("Rated at: " + LastRatingEntered.RatedAt);
         }
