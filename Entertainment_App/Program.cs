@@ -9,6 +9,8 @@ namespace Entertainment_App
         private static void Main(string[] args)
         {
             Media med = null;
+            
+
 
             Console.WriteLine("Press 1 to view movies");
             Console.WriteLine("Press 2 Add Movie");

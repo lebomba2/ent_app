@@ -11,13 +11,12 @@ namespace Entertainment_App.Models
     public class Movie : Media
     {
         private string _fileName;
-
-        public string Genres;
+        private string Genres;
         private List<Movie> Movies = new();
         private MovieContext context = new MovieContext();
         private DateTime ReleaseDate;
-        public string Title;
-            
+        private string Title;
+
         public Movie()
         {
             //Console.WriteLine("movie object created");
@@ -48,7 +47,6 @@ namespace Entertainment_App.Models
                 context.Remove(MovieToRemove);
                 context.SaveChanges();
 
-                //_repository.Delete(movieToDelete);
                 Console.WriteLine("Movie was removed!");
             }
         }
@@ -139,12 +137,10 @@ namespace Entertainment_App.Models
                     {
                         genreString += ", " + genre?.Genre?.Name;
                     }
-
                 }
                 Console.Write("MovieID: " + movie.Id + " ");
                 Console.WriteLine(movie.Title + " " + genreString);
             }
-
         }
 
         public override void Read()

@@ -10,10 +10,10 @@ namespace Entertainment_App.Models
 {
     class UserMovie
     {
-        public int Rating { get; set; }
-        public DateTime RatingAt { get; set; }
-        public int UserId { get; set; }
-        public int MovieId { get; set; }
+        private int Rating { get; set; }
+        private DateTime RatingAt { get; set; }
+        private int UserId { get; set; }
+        private  int MovieId { get; set; }
         private MovieContext context = new MovieContext();
 
 
@@ -134,7 +134,7 @@ psuedo code to check if an item exists
             }
 
             userMovie.Rating = UserRating;
-            userMovie.RatedAt = DateTime.Now;
+                     userMovie.RatedAt = DateTime.Now;
 
             // set up the database relationships
             userMovie.User = user;
