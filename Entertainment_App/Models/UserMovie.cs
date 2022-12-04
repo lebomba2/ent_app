@@ -44,7 +44,6 @@ psuedo code to check if an item exists
             var choice = Console.ReadLine();
             if (choice == "A" || choice == "a")
             {
-                Console.WriteLine("You have entered A for age");
                 Console.Write("Enter an Age; ");
                 var age = Convert.ToInt32(Console.ReadLine());
                 //find all movies reviewed by x age
@@ -53,16 +52,9 @@ psuedo code to check if an item exists
                 //print out all movies found, or indicate none found by age
                 if (moviesByAge.Count > 0)
                 {
-                    /*foreach (var userMovie in moviesByAge)
-                    {
-                        Console.WriteLine("Title: " + userMovie.Movie.Title
-                            + " Rating: " + userMovie.Rating
-                            + " Age: " + userMovie.User.Age);
-                    }
-                    */
                     //get top movie
                     var topRatedByAge = moviesByAge.OrderBy(m => m.Rating).FirstOrDefault();
-                    Console.WriteLine("Top moive by age: " + topRatedByAge.Movie.Title);
+                    Console.WriteLine("Top Movie by age is: " + topRatedByAge.Movie.Title);
                 }
                 else
                 {
@@ -71,10 +63,24 @@ psuedo code to check if an item exists
             }
             else if (choice == "O" || choice == "o")
             {
-                Console.WriteLine("You have typed o for occupation");
-                Console.Write("Enter an occupation: ");
-                var occ = Console.ReadLine();
+                Console.Write("Enter an Occupation: ");
+                var occupation = Console.ReadLine();
+                //find all movies reviewed by  Occupation x
+                var moviesByOccupation = context.UserMovies.Where(m => m.User.Occupation == occupation).ToList();
 
+
+                Console.WriteLine("Found Movies by occupation: ");
+                //print out all movies found, or indicate none found by age
+                if (moviesByOccupation.Count > 0)
+                {
+                    //get top movie
+                    var topRatedByOccupation = moviesByOccupation.OrderBy(m => m.Rating).FirstOrDefault();
+                    Console.WriteLine("Top Movie by occupation: " + topRatedByOccupation.Movie.Title);
+                }
+                else
+                {
+                    Console.WriteLine("No movies found by that occupation.");
+                }
             }
             else
             {
