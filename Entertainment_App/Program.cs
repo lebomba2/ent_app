@@ -1,5 +1,7 @@
 ﻿using Entertainment_App.Models;
 using System;
+using Microsoft.Extensions.Logging;
+//using Microsoft.Extensions.Logging.Console;
 
 
 namespace Entertainment_App
@@ -9,7 +11,10 @@ namespace Entertainment_App
         private static void Main(string[] args)
         {
             Media med = null;
+            //var factory = LoggerFactory.Create(b => b.AddConsole());
             
+            //var logger = factory.CreateLogger<Program>();
+
 
 
             Console.WriteLine("Press 1 to view movies");
@@ -21,7 +26,7 @@ namespace Entertainment_App
             Console.WriteLine("Press 7 to rate a movie:");
             Console.WriteLine("Press 8 to see top rated movies:");
             Console.WriteLine("Press any other key to exit");
-
+            Console.WriteLine("Press 9 to see Golden Raspberry elgible movies: ");
             var isValid = true;
             while (isValid)
             {
@@ -85,6 +90,9 @@ namespace Entertainment_App
                 {
                     UserMovie UserRating = new UserMovie();
                     UserRating.TopRated();
+                }
+                else if (choice == "9") { 
+                
                 }
                 else
                 {

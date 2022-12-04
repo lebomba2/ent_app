@@ -16,8 +16,6 @@ namespace Entertainment_App.Models
         private  int MovieId { get; set; }
         private MovieContext context = new MovieContext();
 
-
-
         /*
         
 psuedo code to check if an item exists
@@ -26,7 +24,6 @@ psuedo code to check if an item exists
     {
         // process if any exist
     }
-     
 
        */
         // Default Constructor
@@ -56,12 +53,13 @@ psuedo code to check if an item exists
                 //print out all movies found, or indicate none found by age
                 if (moviesByAge.Count > 0)
                 {
-                    foreach (var userMovie in moviesByAge)
+                    /*foreach (var userMovie in moviesByAge)
                     {
                         Console.WriteLine("Title: " + userMovie.Movie.Title
                             + " Rating: " + userMovie.Rating
                             + " Age: " + userMovie.User.Age);
                     }
+                    */
                     //get top movie
                     var topRatedByAge = moviesByAge.OrderBy(m => m.Rating).FirstOrDefault();
                     Console.WriteLine("Top moive by age: " + topRatedByAge.Movie.Title);
