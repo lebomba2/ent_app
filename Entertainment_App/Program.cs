@@ -91,8 +91,9 @@ namespace Entertainment_App
                     UserMovie UserRating = new UserMovie();
                     UserRating.TopRated();
                 }
-                else if (choice == "9") { 
-                
+                else if (choice == "9") {
+                    UserMovie UserRating = new UserMovie();
+                    UserRating.lowestRated();
                 }
                 else
                 {

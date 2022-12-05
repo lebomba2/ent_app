@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,8 +36,68 @@ psuedo code to check if an item exists
             MovieId = 0;
         }
 
+        public void lowestRated() 
+        {
+            //needed for title case
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+            //List lowest rated movie by age bracket or occupation
+            //Sort alphabetically and by rating and display just the first movie
+            Console.WriteLine("Do you want to view lowest rated movies by ");
+            Console.WriteLine("age or by occupation? Press A for age or O for occupation ");
+            var choice = Console.ReadLine();
+            if (choice == "A" || choice == "a")
+            {
+                Console.Write("Enter an Age; ");
+                var age = Convert.ToInt32(Console.ReadLine());
+                //find all movies reviewed by x age
+                var moviesByAge = context.UserMovies.Where(m => m.User.Age == age).ToList();
+                Console.WriteLine("Found Movies by age: ");
+                //print out all movies found, or indicate none found by age
+                if (moviesByAge.Count > 0)
+                {
+                    //get lowest movie
+                    var lowestRatedByAge = moviesByAge.OrderBy(m => m.Rating).LastOrDefault();
+                    Console.WriteLine("Lowest Rated Movie by age is: " + lowestRatedByAge.Movie.Title);
+                }
+                else
+                {
+                    Console.WriteLine("No movies found by that age.");
+                }
+            }
+            else if (choice == "O" || choice == "o")
+            {
+                Console.Write("Enter an Occupation: ");
+                var occupation = Console.ReadLine();
+                //convert to title case
+                occupation = textInfo.ToTitleCase(occupation);
+                //find all movies reviewed by  Occupation x
+                var moviesByOccupation = context.UserMovies.Where(m => m.User.Occupation.Name == occupation).ToList();
+
+                Console.WriteLine("Found Movies by occupation: ");
+                //print out all movies found, or indicate none found by age
+                if (moviesByOccupation.Count > 0)
+                {
+                    //get lowest movie
+                    var lowestRatedByOccupation = moviesByOccupation.OrderBy(m => m.Rating).LastOrDefault();
+                    Console.WriteLine("Lowest Rated Movie by occupation: " + lowestRatedByOccupation.Movie.Title);
+                }
+                else
+                {
+                    Console.WriteLine("No movies found by that occupation.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You have made an invalid selection. ");
+            }
+        }
+
         public void TopRated()
         {
+            //needed for title case
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
             //List top rated movie by age bracket or occupation
             //Sort alphabetically and by rating and display just the first movie
             Console.WriteLine("Do you want to view top rated movies by ");
@@ -65,9 +126,10 @@ psuedo code to check if an item exists
             {
                 Console.Write("Enter an Occupation: ");
                 var occupation = Console.ReadLine();
+                //convert to title case
+                occupation = textInfo.ToTitleCase(occupation);
                 //find all movies reviewed by  Occupation x
-                var moviesByOccupation = context.UserMovies.Where(m => m.User.Occupation == occupation).ToList();
-
+                var moviesByOccupation = context.UserMovies.Where(m => m.User.Occupation.Name == occupation).ToList(); 
 
                 Console.WriteLine("Found Movies by occupation: ");
                 //print out all movies found, or indicate none found by age
