@@ -1,6 +1,8 @@
 ﻿using MovieLibraryEntities.Context;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace Entertainment_App.Models
 {
@@ -12,9 +14,12 @@ namespace Entertainment_App.Models
 
         public String ZipCode { get; set; }
 
-
         public User()
         {
+            var factory = LoggerFactory.Create(b => b.AddConsole());
+            var logger = factory.CreateLogger<Program>();
+            logger.LogInformation("Inside User default constructor");
+
             Gender = "Unknown";
             ZipCode = "Unknown";
             Age = 0;

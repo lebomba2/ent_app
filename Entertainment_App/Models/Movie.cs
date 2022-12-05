@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace Entertainment_App.Models
 {
@@ -19,6 +21,9 @@ namespace Entertainment_App.Models
 
         public Movie()
         {
+            var factory = LoggerFactory.Create(b => b.AddConsole());
+            var logger = factory.CreateLogger<Program>();
+            logger.LogInformation("Inside Movie  default constructor");
             //Console.WriteLine("movie object created");
         }
         public override void Delete()

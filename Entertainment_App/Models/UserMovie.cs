@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
 
@@ -14,7 +15,7 @@ namespace Entertainment_App.Models
         private int Rating { get; set; }
         private DateTime RatingAt { get; set; }
         private int UserId { get; set; }
-        private  int MovieId { get; set; }
+        private int MovieId { get; set; }
         private MovieContext context = new MovieContext();
 
         /*
@@ -30,13 +31,18 @@ psuedo code to check if an item exists
         // Default Constructor
         public UserMovie()
         {
+            var factory = LoggerFactory.Create(b => b.AddConsole());
+            var logger = factory.CreateLogger<Program>();
+            logger.LogInformation("Inside UserMovie default constructor");
+
+
             Rating = 1;
             RatingAt = DateTime.Now;
             UserId = 0;
             MovieId = 0;
         }
 
-        public void lowestRated() 
+        public void lowestRated()
         {
             //needed for title case
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
@@ -120,7 +126,7 @@ psuedo code to check if an item exists
                 else
                 {
                     Console.WriteLine("No movies found by that age.");
-                } 
+                }
             }
             else if (choice == "O" || choice == "o")
             {
@@ -129,7 +135,7 @@ psuedo code to check if an item exists
                 //convert to title case
                 occupation = textInfo.ToTitleCase(occupation);
                 //find all movies reviewed by  Occupation x
-                var moviesByOccupation = context.UserMovies.Where(m => m.User.Occupation.Name == occupation).ToList(); 
+                var moviesByOccupation = context.UserMovies.Where(m => m.User.Occupation.Name == occupation).ToList();
 
                 Console.WriteLine("Found Movies by occupation: ");
                 //print out all movies found, or indicate none found by age
@@ -193,14 +199,14 @@ psuedo code to check if an item exists
                 Console.Write("What do you want to rate this movie as choose a number from 1 to 5: ");
                 UserRating = Convert.ToInt32(Console.ReadLine());
 
-                if(UserRating >= 1 && UserRating <= 5 )
+                if (UserRating >= 1 && UserRating <= 5)
                 {
                     IsRatingValid = true;
                 }
             }
 
             userMovie.Rating = UserRating;
-                     userMovie.RatedAt = DateTime.Now;
+            userMovie.RatedAt = DateTime.Now;
 
             // set up the database relationships
             userMovie.User = user;

@@ -1,7 +1,7 @@
 ﻿using Entertainment_App.Models;
 using System;
 using Microsoft.Extensions.Logging;
-//using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Logging.Console;
 
 
 namespace Entertainment_App
@@ -11,10 +11,9 @@ namespace Entertainment_App
         private static void Main(string[] args)
         {
             Media med = null;
-            //var factory = LoggerFactory.Create(b => b.AddConsole());
-
-            //var logger = factory.CreateLogger<Program>();
-
+            var factory = LoggerFactory.Create(b => b.AddConsole());
+            var logger = factory.CreateLogger<Program>();
+            logger.LogInformation("Program has started");
 
             //testing commit to github
 
@@ -36,12 +35,16 @@ namespace Entertainment_App
 
                 if (choice == "1")
                 {
+                    logger.LogInformation("In program.cs Display method");
+
                     // Dis  play Movies
                     med = new Movie();
                     med.Display();
                 }
                 else if (choice == "2")
                 {
+                    logger.LogInformation("Program has Add movie in main  main");
+
                     med = new Movie();
                     med.Add();
 
@@ -50,6 +53,8 @@ namespace Entertainment_App
                 }
                 else if (choice == "3")
                 {
+                    logger.LogInformation("Program in delete portion of main program");
+
                     // Delete Movie
                     med = new Movie();
                     med.Delete();
@@ -57,6 +62,8 @@ namespace Entertainment_App
 
                 else if (choice == "4")
                 {
+                    logger.LogInformation("Program is in search method");
+
                     Console.Write("Enter title to search for: ");
                     var Title = Console.ReadLine();
 
@@ -69,6 +76,8 @@ namespace Entertainment_App
 
                 else if (choice == "5")
                 {
+                    logger.LogInformation("Program in search method in main ");
+
                     // update Movie Listing
                     med = new Movie();
                     med.Update();
@@ -76,6 +85,8 @@ namespace Entertainment_App
                 else if (choice == "6")
                 {
                     User NewUser = new User();
+                    logger.LogInformation("Program is in create new user in maind");
+
 
                     //NewUser.CreateUser(NewUser);
                     NewUser.Add();
@@ -84,25 +95,28 @@ namespace Entertainment_App
                 else if (choice == "7")
                 {
 
+
                     UserMovie uMovie = new UserMovie();
                     uMovie.AddUserMovie();
                 }
                 else if (choice == "8")
-                {
+                { 
                     UserMovie UserRating = new UserMovie();
-                    UserRating.TopRated();
-                }
+                UserRating.TopRated();
+            }
                 else if (choice == "9")
-                {
-                    UserMovie UserRating = new UserMovie();
-                    UserRating.lowestRated();
-                }
-                else
-                {
-                    isValid = false;
-                    Console.WriteLine("You have exited the program.");
-                }
+            {
+                logger.LogInformation("Program is in searching for lowest rated movie");
+
+                UserMovie UserRating = new UserMovie();
+                UserRating.lowestRated();
+            }
+            else
+            {
+                isValid = false;
+                Console.WriteLine("You have exited the program.");
             }
         }
     }
+}
 }
