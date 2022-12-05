@@ -12,10 +12,11 @@ namespace Entertainment_App
         {
             Media med = null;
             //var factory = LoggerFactory.Create(b => b.AddConsole());
-            
+
             //var logger = factory.CreateLogger<Program>();
 
 
+            //testing commit to github
 
             Console.WriteLine("Press 1 to view movies");
             Console.WriteLine("Press 2 Add Movie");
@@ -91,7 +92,8 @@ namespace Entertainment_App
                     UserMovie UserRating = new UserMovie();
                     UserRating.TopRated();
                 }
-                else if (choice == "9") {
+                else if (choice == "9")
+                {
                     UserMovie UserRating = new UserMovie();
                     UserRating.lowestRated();
                 }
