@@ -25,17 +25,6 @@ namespace Entertainment_App.Models
             Age = 0;
         }
 
-        //       public User  CreateUser(User Doe) {
-        //           Console.Write("Enter user's Age: ");
-        //Doe.Age               = Convert.ToInt32( Console.ReadLine());
-
-        //           Console.Write("Enter user's gender: ");
-        //           Doe.Gender = Console.ReadLine();
-        //           Console.Write("Enter user's zip code: ");
-        // Doe.ZipCode  = Console.ReadLine();
-
-        //           return Doe;
-        //       }
 
         public void Add()
         {
@@ -55,7 +44,6 @@ namespace Entertainment_App.Models
             newOccupation.Name = Console.ReadLine();
             newUser.Occupation = newOccupation;
 
-            //Console.WriteLine("Made it pass entering occupation:");
             Console.Write("Enter user's Age: ");
             newUser.Age = Convert.ToInt32(Console.ReadLine());
 
