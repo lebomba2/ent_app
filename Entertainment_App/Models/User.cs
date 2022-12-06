@@ -44,9 +44,30 @@ namespace Entertainment_App.Models
             newOccupation.Name = Console.ReadLine();
             newUser.Occupation = newOccupation;
 
-            Console.Write("Enter user's Age: ");
-            newUser.Age = Convert.ToInt32(Console.ReadLine());
+            var age = 0;
+            bool IsValid = false;
 
+
+            while (IsValid == false)
+            {
+            
+            Console.Write("Enter user's Age: ");
+            age = Convert.ToInt32(Console.ReadLine());
+            if (age <= 0)
+            {
+                Console.WriteLine("Invalid: Must enter a number greater than 0.");
+            }
+            else if (age >= 109)
+            {
+                Console.WriteLine("Invalid: You must enter an age less than 110");
+            }
+
+            else
+            {
+                newUser.Age = age;
+                IsValid = true;
+            }
+        }
             Console.Write("Enter user's gender: ");
             newUser.Gender = Console.ReadLine();
             Console.Write("Enter user's zip code: ");
