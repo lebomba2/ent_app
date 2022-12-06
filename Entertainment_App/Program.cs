@@ -15,27 +15,29 @@ namespace Entertainment_App
             var logger = factory.CreateLogger<Program>();
             logger.LogInformation("Program has started");
 
-            //testing commit to github
-
-            Console.WriteLine("Press 1 to view movies");
-            Console.WriteLine("Press 2 Add Movie");
-            Console.WriteLine("Press 3 to To Delete Movie");
-            Console.WriteLine("Press 4. To search for Movie:  ");
-            Console.WriteLine("Press 5. To Update");
-            Console.WriteLine("Press 6 to enter new user: ");
-            Console.WriteLine("Press 7 to rate a movie:");
-            Console.WriteLine("Press 8 to see top rated movies:");
-            Console.WriteLine("Press any other key to exit");
-            Console.WriteLine("Press 9 to see Golden Raspberry elgible movies: ");
             var isValid = true;
+
             while (isValid)
             {
+                Console.WriteLine();
+                Console.WriteLine("Press 1 to view movies");
+                Console.WriteLine("Press 2 Add Movie");
+                Console.WriteLine("Press 3 to To Delete Movie");
+                Console.WriteLine("Press 4. To search for Movie:  ");
+                Console.WriteLine("Press 5. To Update");
+                Console.WriteLine("Press 6 to enter new user: ");
+                Console.WriteLine("Press 7 to rate a movie:");
+                Console.WriteLine("Press 8 to see top rated movies:");
+                Console.WriteLine("Press any other key to exit");
+                Console.WriteLine("Press 9 to see Golden Raspberry elgible movies: ");
+
                 Console.Write("Enter your choice: ");
                 var choice = Console.ReadLine();
 
                 if (choice == "1")
                 {
-                    logger.LogInformation("In program.cs Display method");
+                    // uncomment if you want to see logger information     
+                    //logger.LogInformation("In program.cs Display method");
 
                     // Dis  play Movies
                     med = new Movie();
@@ -48,12 +50,12 @@ namespace Entertainment_App
                     med = new Movie();
                     med.Add();
 
-
                     // Add Movie 
                 }
                 else if (choice == "3")
                 {
-                    logger.LogInformation("Program in delete portion of main program");
+                    // uncomment if you want to see logger information     
+                    //logger.LogInformation("Program in delete portion of main program");
 
                     // Delete Movie
                     med = new Movie();
@@ -62,21 +64,22 @@ namespace Entertainment_App
 
                 else if (choice == "4")
                 {
-                    logger.LogInformation("Program is in search method");
+                    // uncomment if you want to see logger information     
+                    //logger.LogInformation("Program is in search method");
 
                     Console.Write("Enter title to search for: ");
                     var Title = Console.ReadLine();
 
                     med = new Movie();
                     med.Read();
-
                     med.Search(Title);
 
                 }
 
                 else if (choice == "5")
                 {
-                    logger.LogInformation("Program in search method in main ");
+                    // uncomment if you want to see logger information     
+                    //logger.LogInformation("Program in search method in main ");
 
                     // update Movie Listing
                     med = new Movie();
@@ -85,38 +88,35 @@ namespace Entertainment_App
                 else if (choice == "6")
                 {
                     User NewUser = new User();
-                    logger.LogInformation("Program is in create new user in maind");
-
+                    //logger.LogInformation("Program is in create new user in maind");
 
                     //NewUser.CreateUser(NewUser);
                     NewUser.Add();
-
                 }
                 else if (choice == "7")
                 {
-
 
                     UserMovie uMovie = new UserMovie();
                     uMovie.AddUserMovie();
                 }
                 else if (choice == "8")
-                { 
+                {
                     UserMovie UserRating = new UserMovie();
-                UserRating.TopRated();
-            }
+                    UserRating.TopRated();
+                }
                 else if (choice == "9")
-            {
-                logger.LogInformation("Program is in searching for lowest rated movie");
+                {
+                    //logger.LogInformation("Program is in searching for lowest rated movie");
 
-                UserMovie UserRating = new UserMovie();
-                UserRating.lowestRated();
-            }
-            else
-            {
-                isValid = false;
-                Console.WriteLine("You have exited the program.");
+                    UserMovie UserRating = new UserMovie();
+                    UserRating.lowestRated();
+                }
+                else
+                {
+                    isValid = false;
+                    Console.WriteLine("You have exited the program.");
+                }
             }
         }
     }
-}
 }

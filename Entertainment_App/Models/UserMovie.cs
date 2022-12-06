@@ -33,8 +33,8 @@ psuedo code to check if an item exists
         {
             var factory = LoggerFactory.Create(b => b.AddConsole());
             var logger = factory.CreateLogger<Program>();
-            logger.LogInformation("Inside UserMovie default constructor");
-
+            // Uncomment to utilize logger. 
+            //logger.LogInformation("Inside UserMovie default constructor");
 
             Rating = 1;
             RatingAt = DateTime.Now;
@@ -54,11 +54,31 @@ psuedo code to check if an item exists
             var choice = Console.ReadLine();
             if (choice == "A" || choice == "a")
             {
-                Console.Write("Enter an Age; ");
-                var age = Convert.ToInt32(Console.ReadLine());
+
+                bool IsValid = false;
+                var age = 0;
+                while (IsValid == false)
+                {
+                    Console.Write("Enter an Age:  ");
+                    age = Convert.ToInt32(Console.ReadLine());
+                    if (age <= 0)
+                    {
+                        Console.WriteLine("Invalid: You entered a number below 1.");
+                    }
+                    else if (age >= 109)
+                    {
+                        Console.WriteLine("Invalid: You cannot enter a number over 109.");
+                    }
+                    else
+                    {
+                        IsValid = true;
+                    }
+                }
+                // end of while loop}}
+
                 //find all movies reviewed by x age
                 var moviesByAge = context.UserMovies.Where(m => m.User.Age == age).ToList();
-                Console.WriteLine("Found Movies by age: ");
+                Console.WriteLine(" Searching Movies by age: ");
                 //print out all movies found, or indicate none found by age
                 if (moviesByAge.Count > 0)
                 {
@@ -111,11 +131,30 @@ psuedo code to check if an item exists
             var choice = Console.ReadLine();
             if (choice == "A" || choice == "a")
             {
-                Console.Write("Enter an Age; ");
-                var age = Convert.ToInt32(Console.ReadLine());
+                bool IsValid = false;
+                var age = 0;
+                while (IsValid == false)
+                {
+                    Console.Write("Enter an Age:  ");
+                    age = Convert.ToInt32(Console.ReadLine());
+                    if (age <= 0)
+                    {
+                        Console.WriteLine("Invalid: You entered a number below 1.");
+                    }
+                    else if (age >= 109)
+                    {
+                        Console.WriteLine("Invalid: You cannot enter a number over 109.");
+                    }
+                    else
+                    {
+                        IsValid = true;
+                    }
+                }
+                // end of while loop}}
+
                 //find all movies reviewed by x age
                 var moviesByAge = context.UserMovies.Where(m => m.User.Age == age).ToList();
-                Console.WriteLine("Found Movies by age: ");
+                Console.WriteLine("Searching Movies by age: ");
                 //print out all movies found, or indicate none found by age
                 if (moviesByAge.Count > 0)
                 {
@@ -199,6 +238,7 @@ psuedo code to check if an item exists
                 Console.Write("What do you want to rate this movie as choose a number from 1 to 5: ");
                 UserRating = Convert.ToInt32(Console.ReadLine());
 
+                // check to see if the rating is in bounds
                 if (UserRating >= 1 && UserRating <= 5)
                 {
                     IsRatingValid = true;
