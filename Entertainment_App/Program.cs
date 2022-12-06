@@ -45,7 +45,7 @@ namespace Entertainment_App
                 }
                 else if (choice == "2")
                 {
-                    logger.LogInformation("Program has Add movie in main  main");
+                    //logger.LogInformation("Program has Add movie in main  main");
 
                     med = new Movie();
                     med.Add();

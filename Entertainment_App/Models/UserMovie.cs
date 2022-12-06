@@ -18,16 +18,6 @@ namespace Entertainment_App.Models
         private int MovieId { get; set; }
         private MovieContext context = new MovieContext();
 
-        /*
-        
-psuedo code to check if an item exists
-  var movies = db.Movies.Where(x=>x.Title.Contains("Utopia"));
-    if (movies.Any()) // this returns a true/false boolean
-    {
-        // process if any exist
-    }
-
-       */
         // Default Constructor
         public UserMovie()
         {
@@ -215,8 +205,7 @@ psuedo code to check if an item exists
             // build user object (not database)
             Console.Write("Enter the movie title you want to search for: ");
             MovieTitle = Console.ReadLine();
-            //var Title = Console.ReadLine();
-
+            
             var user = context.Users.FirstOrDefault(u => u.Id == UserId);
 
             Movie movie = new Movie();
@@ -257,12 +246,14 @@ psuedo code to check if an item exists
             // commit
             context.SaveChanges();
 
+            // Display details of last record entered to screen.
             Console.WriteLine("New rating was added.");
             var LastRatingEntered = context.UserMovies.OrderBy(x => x.RatedAt).LastOrDefault();
             Console.WriteLine("Last Movie Rated: " + LastRatingEntered.Movie.Title);
             Console.WriteLine("Movie recieved a rating of: " + LastRatingEntered.Rating);
             Console.WriteLine("Rated by user: " + LastRatingEntered.User.Id);
-
+            Console.WriteLine("Age of person rating it is: " + LastRatingEntered.User.Age);
+            Console.WriteLine("Gender of the person rating the movie is: " + LastRatingEntered.User.Gender);
             Console.WriteLine("Rated at: " + LastRatingEntered.RatedAt);
         }
 

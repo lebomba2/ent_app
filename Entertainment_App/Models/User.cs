@@ -50,24 +50,24 @@ namespace Entertainment_App.Models
 
             while (IsValid == false)
             {
-            
-            Console.Write("Enter user's Age: ");
-            age = Convert.ToInt32(Console.ReadLine());
-            if (age <= 0)
-            {
-                Console.WriteLine("Invalid: Must enter a number greater than 0.");
-            }
-            else if (age >= 109)
-            {
-                Console.WriteLine("Invalid: You must enter an age less than 110");
-            }
 
-            else
-            {
-                newUser.Age = age;
-                IsValid = true;
+                Console.Write("Enter user's Age: ");
+                age = Convert.ToInt32(Console.ReadLine());
+                if (age <= 0)
+                {
+                    Console.WriteLine("Invalid: Must enter a number greater than 0.");
+                }
+                else if (age >= 109)
+                {
+                    Console.WriteLine("Invalid: You must enter an age less than 110");
+                }
+
+                else
+                {
+                    newUser.Age = age;
+                    IsValid = true;
+                }
             }
-        }
             Console.Write("Enter user's gender: ");
             newUser.Gender = Console.ReadLine();
             Console.Write("Enter user's zip code: ");
@@ -88,4 +88,3 @@ namespace Entertainment_App.Models
 
     }
 }
-

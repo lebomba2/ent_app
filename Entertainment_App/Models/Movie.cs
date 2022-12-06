@@ -23,7 +23,8 @@ namespace Entertainment_App.Models
         {
             var factory = LoggerFactory.Create(b => b.AddConsole());
             var logger = factory.CreateLogger<Program>();
-            logger.LogInformation("Inside Movie  default constructor");
+            // uncomment to view logger
+            //logger.LogInformation("Inside Movie  default constructor");
             //Console.WriteLine("movie object created");
         }
         public override void Delete()
