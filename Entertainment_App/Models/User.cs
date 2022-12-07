@@ -8,11 +8,11 @@ namespace Entertainment_App.Models
 {
     class User
     {
-        public int Age { get; set; }
-        public String Gender { get; set; }
+        private int Age { get; set; }
+        private String Gender { get; set; }
         private MovieContext context = new MovieContext();
 
-        public String ZipCode { get; set; }
+        private String ZipCode { get; set; }
 
         public User()
         {

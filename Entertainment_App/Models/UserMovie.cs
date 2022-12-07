@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Logging;
+using MovieLibraryEntities.Context;
+using System;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using MovieLibraryEntities.Context;
-using MovieLibraryEntities.Models;
 
 namespace Entertainment_App.Models
 {
@@ -36,6 +32,8 @@ namespace Entertainment_App.Models
         {
             //needed for title case
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            // link to text info 
+            //https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.textinfo?view=net-7.0
 
             //List lowest rated movie by age bracket or occupation
             //Sort alphabetically and by rating and display just the first movie
@@ -212,7 +210,7 @@ namespace Entertainment_App.Models
                 MovieTitle = Console.ReadLine();
 
                 //var user = context.Users.FirstOrDefault(u => u.Id == UserId);
-                 user = context.Users.FirstOrDefault(u => u.Id == UserId);
+                user = context.Users.FirstOrDefault(u => u.Id == UserId);
 
                 Movie movie = new Movie();
                 movie.Read();
@@ -230,11 +228,12 @@ namespace Entertainment_App.Models
 
                 }
 
-                else {
+                else
+                {
 
                     IsRunning = false;
 
-                    Console.WriteLine("Done Searching");
+                    Console.WriteLine("Done Searching       ");
                 }
             }
 
