@@ -202,17 +202,42 @@ namespace Entertainment_App.Models
 
             var MovieTitle = "";
 
-            // build user object (not database)
-            Console.Write("Enter the movie title you want to search for: ");
-            MovieTitle = Console.ReadLine();
-            
-            var user = context.Users.FirstOrDefault(u => u.Id == UserId);
+            var user = context.Users.FirstOrDefault(u => u.Id == 0);
 
-            Movie movie = new Movie();
-            movie.Read();
+            bool IsRunning = true;
+            while (IsRunning == true)
+            {
+                // build user object (not database)
+                Console.Write("Enter the movie title you want to search for: ");
+                MovieTitle = Console.ReadLine();
 
-            // Display Movies to Screen
-            movie.Search(MovieTitle);
+                //var user = context.Users.FirstOrDefault(u => u.Id == UserId);
+                 user = context.Users.FirstOrDefault(u => u.Id == UserId);
+
+                Movie movie = new Movie();
+                movie.Read();
+
+                // Display Movies to Screen
+                movie.Search(MovieTitle);
+
+                Console.Write("Do you want to search for another movie? Press 1 to continue or any other key to exit: ");
+                var choice = Console.ReadLine();
+
+                //check what user entered
+                if (choice == "1")
+                {
+                    Console.WriteLine("Continue search: ");
+
+                }
+
+                else {
+
+                    IsRunning = false;
+
+                    Console.WriteLine("Done Searching");
+                }
+            }
+
             Console.WriteLine("Choose the movie ID you want to rate: ");
             var idToRate = Convert.ToInt32(Console.ReadLine());
 
@@ -242,28 +267,28 @@ namespace Entertainment_App.Models
             userMovie.Movie = movieToRate;
 
             //verify userMovie has a valid Id
-            if (context.UserMovies.FirstOrDefault(m => m.Movie.Id == userMovie.Id) != null)
-            {
-                context.UserMovies.Add(userMovie);
+            //if (context.UserMovies.FirstOrDefault(m => m.Movie.Id == userMovie.Id) != null)
+            //{
+            context.UserMovies.Add(userMovie);
 
-                // commit
-                context.SaveChanges();
+            // commit
+            context.SaveChanges();
 
-                // Display details of last record entered to screen.
-                Console.WriteLine("New rating was added.");
-                var LastRatingEntered = context.UserMovies.OrderBy(x => x.RatedAt).LastOrDefault();
-                Console.WriteLine("Last Movie Rated: " + LastRatingEntered.Movie.Title);
-                Console.WriteLine("Movie recieved a rating of: " + LastRatingEntered.Rating);
-                Console.WriteLine("Rated by user: " + LastRatingEntered.User.Id);
-                Console.WriteLine("Age of person rating it is: " + LastRatingEntered.User.Age);
-                Console.WriteLine("Gender of the person rating the movie is: " + LastRatingEntered.User.Gender);
-                Console.WriteLine("Rated at: " + LastRatingEntered.RatedAt);
-            }
-            else
+            // Display details of last record entered to screen.
+            Console.WriteLine("New rating was added.");
+            var LastRatingEntered = context.UserMovies.OrderBy(x => x.RatedAt).LastOrDefault();
+            Console.WriteLine("Last Movie Rated: " + LastRatingEntered.Movie.Title);
+            Console.WriteLine("Movie recieved a rating of: " + LastRatingEntered.Rating);
+            Console.WriteLine("Rated by user: " + LastRatingEntered.User.Id);
+            Console.WriteLine("Age of person rating it is: " + LastRatingEntered.User.Age);
+            Console.WriteLine("Gender of the person rating the movie is: " + LastRatingEntered.User.Gender);
+            Console.WriteLine("Rated at: " + LastRatingEntered.RatedAt);
+            //}
+            /*else
             {
                 Console.WriteLine("Failed to add new rating, movie ID not found.");
             }
-            
+           */
         }
 
 
