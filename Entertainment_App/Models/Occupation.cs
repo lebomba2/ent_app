@@ -13,7 +13,7 @@ namespace Entertainment_App.Models
         {
             var factory = LoggerFactory.Create(b => b.AddConsole());
             var logger = factory.CreateLogger<Program>();
-            logger.LogInformation("Inside Occupation  default constructor");
+            //logger.LogInformation("Inside Occupation  default constructor");
 
             Name = "unknown";
         }

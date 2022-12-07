@@ -13,7 +13,7 @@ namespace Entertainment_App
             Media med = null;
             var factory = LoggerFactory.Create(b => b.AddConsole());
             var logger = factory.CreateLogger<Program>();
-            logger.LogInformation("Program has started");
+            //logger.LogInformation("Program has started");
 
             var isValid = true;
 
@@ -29,7 +29,7 @@ namespace Entertainment_App
                 Console.WriteLine("Press 7 to rate a movie:");
                 Console.WriteLine("Press 8 to see top rated movies:");
                 Console.WriteLine("Press any other key to exit");
-                Console.WriteLine("Press 9 to see Golden Raspberry elgible movies: ");
+                Console.WriteLine("Press 9 to see Golden Raspberry elligible movies: ");
 
                 Console.Write("Enter your choice: ");
                 var choice = Console.ReadLine();

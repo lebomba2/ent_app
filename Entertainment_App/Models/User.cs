@@ -18,7 +18,7 @@ namespace Entertainment_App.Models
         {
             var factory = LoggerFactory.Create(b => b.AddConsole());
             var logger = factory.CreateLogger<Program>();
-            logger.LogInformation("Inside User default constructor");
+            //logger.LogInformation("Inside User default constructor");
 
             Gender = "Unknown";
             ZipCode = "Unknown";
